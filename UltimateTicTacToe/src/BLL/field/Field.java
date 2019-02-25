@@ -28,9 +28,15 @@ public class Field implements IField
     @Override
     public void clearBoard()
     {
-        for (int i = 0; i < board.length; i++) {
-            for(int j = 0; i < board.length; j++) {
-                board[i][j] = "";
+        for(String[] u : board) {
+            for(String elem : u) {
+                elem = AVAILABLE_FIELD;
+            }
+        }
+        
+        for(String[] u : macroBoard) {
+            for (String elem : u) {
+                elem = AVAILABLE_FIELD;
             }
         }
     }
@@ -62,7 +68,11 @@ public class Field implements IField
     @Override
     public Boolean isInActiveMicroboard(int x, int y)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (board[x][y].equals(AVAILABLE_FIELD)) {
+            return true;
+        }else {
+            return false;
+        }
     }
 
     @Override
