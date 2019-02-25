@@ -16,7 +16,7 @@ import javafx.stage.Stage;
  * @author Frederik Jensen
  */
 public class UltimateTicTacToe extends Application
-{
+    {
     
     @Override
     public void start(Stage stage) throws Exception
