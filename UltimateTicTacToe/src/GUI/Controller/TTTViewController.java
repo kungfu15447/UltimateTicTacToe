@@ -41,6 +41,8 @@ public class TTTViewController implements Initializable
     private GridPane board6;
     @FXML
     private GridPane board3;
+    @FXML
+    private Label lblPlayersTurn;
     
     @FXML
     private void handleButtonAction(ActionEvent event)
@@ -53,5 +55,10 @@ public class TTTViewController implements Initializable
     {
         // TODO
     }    
+
+    @FXML
+    private void handleRestartBtn(ActionEvent event)
+    {
+    }
     
 }
