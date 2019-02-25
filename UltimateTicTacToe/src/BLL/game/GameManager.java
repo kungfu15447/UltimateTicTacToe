@@ -1,8 +1,6 @@
 package BLL.game;
 
 import BLL.bot.IBot;
-import BLL.bot.IBot;
-import BLL.move.IMove;
 import BLL.move.IMove;
 
 /**
