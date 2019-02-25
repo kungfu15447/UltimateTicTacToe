@@ -15,10 +15,24 @@ import java.util.List;
 public class Field implements IField
 {
 
+    private String[][] board;
+    private String[][] macroBoard;
+
+    public Field()
+    {
+        board = new String[9][9];
+        
+        macroBoard = new String[3][3];
+    }
+
     @Override
     public void clearBoard()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (int i = 0; i < board.length; i++) {
+            for(int j = 0; i < board.length; j++) {
+                board[i][j] = "";
+            }
+        }
     }
 
     @Override
@@ -54,25 +68,25 @@ public class Field implements IField
     @Override
     public String[][] getBoard()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return board;
     }
 
     @Override
     public String[][] getMacroboard()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return macroBoard;
     }
 
     @Override
     public void setBoard(String[][] board)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.board = board;
     }
 
     @Override
     public void setMacroboard(String[][] macroboard)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.macroBoard = macroboard;
     }
-    
+
 }

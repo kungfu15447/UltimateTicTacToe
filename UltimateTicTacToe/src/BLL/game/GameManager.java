@@ -1,5 +1,4 @@
 package BLL.game;
-
 import BLL.bot.IBot;
 import BLL.move.IMove;
 
