@@ -14,6 +14,8 @@ import BLL.field.IField;
 public class GameState implements IGameState
 {
 
+    private int roundNumber;
+    
     @Override
     public IField getField()
     {
@@ -35,13 +37,13 @@ public class GameState implements IGameState
     @Override
     public int getRoundNumber()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return roundNumber;
     }
 
     @Override
     public void setRoundNumber(int roundNumber)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.roundNumber = roundNumber;
     }
     
 }
