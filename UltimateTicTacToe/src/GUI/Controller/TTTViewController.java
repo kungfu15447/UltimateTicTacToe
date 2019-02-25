@@ -6,10 +6,16 @@
 package GUI.Controller;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceDialog;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
 /**
@@ -39,6 +45,8 @@ public class TTTViewController implements Initializable
     private GridPane board6;
     @FXML
     private GridPane board3;
+    @FXML
+    private Label lblPlayersTurn;
     
     @FXML
     private void handleButtonAction(ActionEvent event)
@@ -51,5 +59,34 @@ public class TTTViewController implements Initializable
     {
         // TODO
     }    
+
+    @FXML
+    private void handleRestartBtn(ActionEvent event)
+    {
+    }
+
+    @FXML
+    private void handleChangeOpponent(ActionEvent event)
+    {
+        List<String> choices = new ArrayList<>();
+        choices.add("Human vs. Human");
+        choices.add("Human vs. Bot");
+        choices.add("Bot vs. Bot");
+
+        ChoiceDialog<String> dialog = new ChoiceDialog<>("Human vs. Human", choices);
+        dialog.setTitle("Choice Dialog");
+        dialog.setHeaderText("Which opponent do you want?");
+        dialog.setContentText("Choose:");
+
+        // Traditional way to get the response value.
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent())
+        {
+            System.out.println("Your choice: " + result.get());
+        }
+
+        // The Java 8 way to get the response value (with lambda expression).
+        result.ifPresent(letter -> System.out.println("Your choice: " + letter));
+    }
     
 }
