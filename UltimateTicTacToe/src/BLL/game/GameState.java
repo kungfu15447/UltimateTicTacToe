@@ -23,7 +23,6 @@ public class GameState implements IGameState
         roundNumber = 1;
     }
 
-
     
     @Override
     public IField getField()
