@@ -5,6 +5,7 @@
  */
 package GUI.Controller;
 
+import BLL.game.GameManager;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +48,9 @@ public class TTTViewController implements Initializable
     private GridPane board3;
     @FXML
     private Label lblPlayersTurn;
+    private GameManager gameManager;
+    
+    
     
     @FXML
     private void handleButtonAction(ActionEvent event)
@@ -57,7 +61,7 @@ public class TTTViewController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
+        lblPlayersTurn.setText("1");
     }    
 
     @FXML
