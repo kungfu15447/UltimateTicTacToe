@@ -6,6 +6,7 @@
 package GUI.Controller;
 
 import BLL.bot.IBot;
+import BLL.field.IField;
 import BLL.game.GameManager;
 import BLL.game.GameState;
 import BLL.game.IGameState;
@@ -18,7 +19,10 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -34,6 +38,7 @@ public class TTTViewController implements Initializable
     GameState currentState;
     IBot bot;
     IBot bot2;
+    IField field;
     @FXML
     private GridPane macroBoard;
     @FXML
@@ -78,6 +83,21 @@ public class TTTViewController implements Initializable
     @FXML
     private void handleRestartBtn(ActionEvent event)
     {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Restart the game?");
+        alert.setHeaderText("You are about to clear the board");
+        alert.setContentText("Are you sure?");
+        
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.get()== ButtonType.YES)
+        {
+            field.clearBoard();
+        }
+        else
+        {
+            //close the dialog!
+        }
+
     }
 
     @FXML
@@ -100,17 +120,19 @@ public class TTTViewController implements Initializable
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent())
         {
-            currentState = new GameState();
             switch (result.get())
             {
                 case "Human vs. Human":
-                    humanVsHuman(currentState);
+                    humanVsHuman();
+                    System.out.println("Human vs. Human");
                     break;
                 case "Human vs. Bot":
-                    humanVsBot(currentState, bot);
+                    humanVsBot();
+                    System.out.println("Human vs. Bot");
                     break;
                 case "Bot vs. Bot":
-                    botVsBot(currentState,bot,bot2);
+                    botVsBot();
+                    System.out.println("Bot vs. Bot");
                     break;
                 default: choice = "you have not chosen";
                 break;
@@ -118,17 +140,17 @@ public class TTTViewController implements Initializable
         }
     }
 
-    public void humanVsHuman(IGameState currentState)
+    public void humanVsHuman()
     {
         gm = new GameManager(currentState);
     }
 
-    public void humanVsBot(IGameState currentState, IBot bot)
+    public void humanVsBot()
     {
         gm = new GameManager(currentState, bot);
     }
 
-    public void botVsBot(IGameState currentState, IBot bot, IBot bot2)
+    public void botVsBot()
     {
         gm = new GameManager(currentState, bot, bot2);
     }
