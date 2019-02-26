@@ -9,6 +9,7 @@ import BLL.bot.IBot;
 import BLL.game.GameManager;
 import BLL.game.GameState;
 import BLL.game.IGameState;
+import BLL.game.GameManager;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +57,11 @@ public class TTTViewController implements Initializable
     @FXML
     private Label lblPlayersTurn;
 
+    private GameManager gameManager;
+    
+    
+    
+
     @FXML
     private void handleButtonAction(ActionEvent event)
     {
@@ -65,8 +71,9 @@ public class TTTViewController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
-    }
+        lblPlayersTurn.setText("1");
+    }    
+
 
     @FXML
     private void handleRestartBtn(ActionEvent event)
