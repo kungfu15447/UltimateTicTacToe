@@ -56,7 +56,16 @@ public class Field implements IField
     @Override
     public boolean isEmpty()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (String[] e : board)
+        {
+            for (String elem : e) {
+                if (elem.equals(EMPTY_FIELD) || elem.equals(AVAILABLE_FIELD))
+                { 
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override
