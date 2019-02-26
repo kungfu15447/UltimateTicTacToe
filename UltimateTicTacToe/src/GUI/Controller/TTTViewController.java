@@ -5,6 +5,10 @@
  */
 package GUI.Controller;
 
+import BLL.bot.IBot;
+import BLL.game.GameManager;
+import BLL.game.GameState;
+import BLL.game.IGameState;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +28,11 @@ import javafx.scene.layout.GridPane;
  */
 public class TTTViewController implements Initializable
 {
-    
+
+    GameManager gm;
+    GameState currentState;
+    IBot bot;
+    IBot bot2;
     @FXML
     private GridPane macroBoard;
     @FXML
@@ -47,18 +55,18 @@ public class TTTViewController implements Initializable
     private GridPane board3;
     @FXML
     private Label lblPlayersTurn;
-    
+
     @FXML
     private void handleButtonAction(ActionEvent event)
     {
-        
+
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
-    }    
+    }
 
     @FXML
     private void handleRestartBtn(ActionEvent event)
@@ -66,8 +74,9 @@ public class TTTViewController implements Initializable
     }
 
     @FXML
-    private void handleChangeOpponent(ActionEvent event)
+    private void handleChangeOpponent()
     {
+
         List<String> choices = new ArrayList<>();
         choices.add("Human vs. Human");
         choices.add("Human vs. Bot");
@@ -77,16 +86,43 @@ public class TTTViewController implements Initializable
         dialog.setTitle("Choice Dialog");
         dialog.setHeaderText("Which opponent do you want?");
         dialog.setContentText("Choose:");
+        
+        String choice;
 
         // Traditional way to get the response value.
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent())
         {
-            System.out.println("Your choice: " + result.get());
+            currentState = new GameState();
+            switch (result.get())
+            {
+                case "Human vs. Human":
+                    humanVsHuman(currentState);
+                    break;
+                case "Human vs. Bot":
+                    humanVsBot(currentState, bot);
+                    break;
+                case "Bot vs. Bot":
+                    botVsBot(currentState,bot,bot2);
+                    break;
+                default: choice = "you have not chosen";
+                break;
+            }
         }
-
-        // The Java 8 way to get the response value (with lambda expression).
-        result.ifPresent(letter -> System.out.println("Your choice: " + letter));
     }
-    
+
+    public void humanVsHuman(IGameState currentState)
+    {
+        gm = new GameManager(currentState);
+    }
+
+    public void humanVsBot(IGameState currentState, IBot bot)
+    {
+        gm = new GameManager(currentState, bot);
+    }
+
+    public void botVsBot(IGameState currentState, IBot bot, IBot bot2)
+    {
+        gm = new GameManager(currentState, bot, bot2);
+    }
 }
