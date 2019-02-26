@@ -11,17 +11,24 @@ package BLL.move;
  */
 public class Move implements IMove
 {
+    private final int X;
+    private final int Y;
+    
+    public Move(int x, int y) {
+        this.X = x;
+        this.Y = y;
+    }
 
     @Override
     public int getX()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return X;
     }
 
     @Override
     public int getY()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Y;
     }
     
 }

@@ -50,7 +50,7 @@ public class Field implements IField
     @Override
     public String getPlayerId(int column, int row)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return board[row][column];
     }
 
     @Override
@@ -62,13 +62,20 @@ public class Field implements IField
     @Override
     public boolean isFull()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (String[] u : board) {
+            for (String elem : u) {
+                if (elem.equals(AVAILABLE_FIELD) || elem.equals(EMPTY_FIELD)) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     @Override
     public Boolean isInActiveMicroboard(int x, int y)
     {
-        if (board[x][y].equals(AVAILABLE_FIELD)) {
+        if (macroBoard[x][y].equals(AVAILABLE_FIELD)) {
             return true;
         }else {
             return false;

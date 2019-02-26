@@ -22,8 +22,11 @@ public class GameState implements IGameState
         moveNumber = 1;
         roundNumber = 1;
     }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 82fbccf512784b09f193066d6b921c9ab74d7b19
     
     @Override
     public IField getField()
