@@ -89,7 +89,9 @@ public class TTTViewController implements Initializable
         else if(gameManager.getCurrentPlayer() == 1)
         {
             btn.setText(setO);
+            
         }
+        gameManager.updateGame(new Move(r,c));
             
         
         

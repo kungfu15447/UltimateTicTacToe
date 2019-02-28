@@ -131,7 +131,10 @@ public class GameManager {
     
     private void updateBoard(IMove move)
     {
-       currentState.getField().getBoard()[move.getX()][move.getY()] = Integer.toString(currentPlayer);
+       String[][] currentBoard;
+       currentBoard = currentState.getField().getBoard();
+       currentBoard[move.getX()][move.getY()] = Integer.toString(currentPlayer);
+       currentState.getField().setBoard(currentBoard);
        int currentRound = currentState.getMoveNumber();
        currentState.setMoveNumber(currentRound + 1);
        
