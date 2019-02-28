@@ -114,9 +114,7 @@ public class TTTViewController implements Initializable
         dialog.setHeaderText("Which opponent do you want?");
         dialog.setContentText("Choose:");
         
-        String choice;
-
-        // Traditional way to get the response value.
+        
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent())
         {
@@ -134,8 +132,6 @@ public class TTTViewController implements Initializable
                     botVsBot();
                     System.out.println("Bot vs. Bot");
                     break;
-                default: choice = "you have not chosen";
-                break;
             }
         }
     }
