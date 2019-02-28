@@ -7,7 +7,6 @@ package GUI.Controller;
 
 import BLL.bot.IBot;
 import BLL.field.IField;
-import BLL.game.GameManager;
 import BLL.game.GameState;
 import BLL.game.IGameState;
 import BLL.game.GameManager;
@@ -19,6 +18,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -70,7 +70,16 @@ public class TTTViewController implements Initializable
     @FXML
     private void handleButtonAction(ActionEvent event)
     {
-
+        
+        Integer row = GridPane.getRowIndex((Node) event.getSource());
+        Integer col = GridPane.getColumnIndex((Node) event.getSource());
+        int r = (row == null) ? 0 : row;
+        int c = (col == null) ? 0 : col;
+        String setO = "O";
+        String setX = "X";
+        Button btn = (Button) event.getSource();
+        
+        
     }
 
     @Override
