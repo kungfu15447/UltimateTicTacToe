@@ -134,6 +134,7 @@ public class GameManager {
        currentState.getField().getBoard()[move.getX()][move.getY()] = Integer.toString(currentPlayer);
        int currentRound = currentState.getMoveNumber();
        currentState.setMoveNumber(currentRound + 1);
+       
     }
     
     private void updateMacroboard(IMove move)
