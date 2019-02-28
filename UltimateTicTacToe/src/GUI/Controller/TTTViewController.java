@@ -10,6 +10,7 @@ import BLL.field.IField;
 import BLL.game.GameState;
 import BLL.game.IGameState;
 import BLL.game.GameManager;
+import BLL.move.Move;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ import javafx.scene.layout.GridPane;
 public class TTTViewController implements Initializable
 {
 
-    GameManager gm;
+    
     GameState currentState;
     IBot bot;
     IBot bot2;
@@ -61,8 +62,10 @@ public class TTTViewController implements Initializable
     private GridPane board3;
     @FXML
     private Label lblPlayersTurn;
-
+    
     private GameManager gameManager;
+    
+    private int counter;
     
     
     
@@ -70,7 +73,6 @@ public class TTTViewController implements Initializable
     @FXML
     private void handleButtonAction(ActionEvent event)
     {
-        
         Integer row = GridPane.getRowIndex((Node) event.getSource());
         Integer col = GridPane.getColumnIndex((Node) event.getSource());
         int r = (row == null) ? 0 : row;
@@ -78,6 +80,18 @@ public class TTTViewController implements Initializable
         String setO = "O";
         String setX = "X";
         Button btn = (Button) event.getSource();
+        if(gameManager.getCurrentPlayer() == 0)
+        {
+            btn.setText(setX);
+            
+        }
+        else if(gameManager.getCurrentPlayer() == 1)
+        {
+            btn.setText(setO);
+        }
+        System.out.println(counter);
+            
+        
         
         
     }
@@ -86,6 +100,7 @@ public class TTTViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         lblPlayersTurn.setText("1");
+        counter = 0;
     }    
 
 
@@ -147,16 +162,21 @@ public class TTTViewController implements Initializable
 
     public void humanVsHuman()
     {
-        gm = new GameManager(currentState);
+        gameManager = new GameManager(new GameState());
     }
 
     public void humanVsBot()
     {
-        gm = new GameManager(currentState, bot);
+        gameManager = new GameManager(currentState, bot);
     }
 
     public void botVsBot()
     {
-        gm = new GameManager(currentState, bot, bot2);
+        gameManager = new GameManager(currentState, bot, bot2);
+    }
+    
+    public void initializeGameManager(GameManager gameManager)
+    {
+        this.gameManager = gameManager;
     }
 }
