@@ -17,7 +17,8 @@ public class GameState implements IGameState
     private final IField FIELD;
     private int moveNumber;
     private int roundNumber;
-    public GameState() {
+    public GameState() 
+    {
         FIELD = new Field();
         moveNumber = 1;
         roundNumber = 1;

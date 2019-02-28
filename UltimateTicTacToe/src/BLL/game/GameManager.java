@@ -141,9 +141,10 @@ public class GameManager {
        //TODO: Update the macroboard to the new state 
        throw new UnsupportedOperationException("Not supported yet."); 
     }
-    
+
     public int getCurrentPlayer()
     {
         return currentPlayer;
     }
+
 }
