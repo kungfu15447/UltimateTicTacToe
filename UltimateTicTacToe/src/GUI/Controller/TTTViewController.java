@@ -10,6 +10,7 @@ import BLL.field.IField;
 import BLL.game.GameState;
 import BLL.game.IGameState;
 import BLL.game.GameManager;
+import BLL.move.Move;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ import javafx.scene.layout.GridPane;
 public class TTTViewController implements Initializable
 {
 
-    GameManager gm;
+    
     GameState currentState;
     IBot bot;
     IBot bot2;
@@ -62,8 +63,12 @@ public class TTTViewController implements Initializable
     private GridPane board3;
     @FXML
     private Label lblPlayersTurn;
-
+    
     private GameManager gameManager;
+
+    
+    
+    
 
     @FXML
     private void handleButtonAction(ActionEvent event)
@@ -75,6 +80,20 @@ public class TTTViewController implements Initializable
         String setO = "O";
         String setX = "X";
         Button btn = (Button) event.getSource();
+        
+        if(gameManager.getCurrentPlayer() == 0)
+        {
+            btn.setText(setX);
+            
+        }
+        else if(gameManager.getCurrentPlayer() == 1)
+        {
+            btn.setText(setO);
+        }
+            
+        
+        
+        
 
     }
 
@@ -83,6 +102,7 @@ public class TTTViewController implements Initializable
     {
         lblPlayersTurn.setText("1");
     }
+
 
     @FXML
     private void handleRestartBtn(ActionEvent event)
@@ -140,17 +160,22 @@ public class TTTViewController implements Initializable
 
     public void humanVsHuman()
     {
-        gm = new GameManager(currentState);
+        gameManager = new GameManager(new GameState());
     }
 
     public void humanVsBot()
     {
-        gm = new GameManager(currentState, bot);
+        gameManager = new GameManager(currentState, bot);
     }
 
     public void botVsBot()
     {
-        gm = new GameManager(currentState, bot, bot2);
+        gameManager = new GameManager(currentState, bot, bot2);
+    }
+    
+    public void initializeGameManager(GameManager gameManager)
+    {
+        this.gameManager = gameManager;
     }
 
     @FXML
