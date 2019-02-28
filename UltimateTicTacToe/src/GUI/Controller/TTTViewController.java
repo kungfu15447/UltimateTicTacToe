@@ -25,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
 /**
@@ -63,14 +64,10 @@ public class TTTViewController implements Initializable
     private Label lblPlayersTurn;
 
     private GameManager gameManager;
-    
-    
-    
 
     @FXML
     private void handleButtonAction(ActionEvent event)
     {
-        
         Integer row = GridPane.getRowIndex((Node) event.getSource());
         Integer col = GridPane.getColumnIndex((Node) event.getSource());
         int r = (row == null) ? 0 : row;
@@ -78,16 +75,14 @@ public class TTTViewController implements Initializable
         String setO = "O";
         String setX = "X";
         Button btn = (Button) event.getSource();
-        
-        
+
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
         lblPlayersTurn.setText("1");
-    }    
-
+    }
 
     @FXML
     private void handleRestartBtn(ActionEvent event)
@@ -96,13 +91,12 @@ public class TTTViewController implements Initializable
         alert.setTitle("Restart the game?");
         alert.setHeaderText("You are about to clear the board");
         alert.setContentText("Are you sure?");
-        
+
         Optional<ButtonType> result = alert.showAndWait();
-        if(result.get()== ButtonType.YES)
+        if (result.get() == ButtonType.YES)
         {
             field.clearBoard();
-        }
-        else
+        } else
         {
             //close the dialog!
         }
@@ -122,8 +116,7 @@ public class TTTViewController implements Initializable
         dialog.setTitle("Choice Dialog");
         dialog.setHeaderText("Which opponent do you want?");
         dialog.setContentText("Choose:");
-        
-        
+
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent())
         {
@@ -158,5 +151,15 @@ public class TTTViewController implements Initializable
     public void botVsBot()
     {
         gm = new GameManager(currentState, bot, bot2);
+    }
+
+    @FXML
+    private void getMacroBoardCoordinates(MouseEvent event)
+    {
+        Integer row = GridPane.getRowIndex((Node) event.getSource());
+        Integer col = GridPane.getColumnIndex((Node) event.getSource());
+        int r = (row == null) ? 0 : row;
+        int c = (col == null) ? 0 : col;
+        
     }
 }
