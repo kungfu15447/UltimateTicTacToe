@@ -23,26 +23,36 @@ public class Field implements IField
     public Field()
     {
         board = new String[9][9];
+        
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                board[i][j] = AVAILABLE_FIELD;
+            }
+        }
 
         macroBoard = new String[3][3];
+        
+        for (int i = 0; i < macroBoard.length; i++) {
+            for (int j = 0; j < macroBoard[0].length; j++) {
+                macroBoard[i][j] = AVAILABLE_FIELD;
+            }
+        }
     }
 
     @Override
     public void clearBoard()
     {
-        for (String[] u : board)
-        {
-            for (String elem : u)
-            {
-                elem = AVAILABLE_FIELD;
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                board[i][j] = AVAILABLE_FIELD;
             }
         }
 
-        for (String[] u : macroBoard)
-        {
-            for (String elem : u)
-            {
-                elem = AVAILABLE_FIELD;
+        macroBoard = new String[3][3];
+        
+        for (int i = 0; i < macroBoard.length; i++) {
+            for (int j = 0; j < macroBoard[0].length; j++) {
+                macroBoard[i][j] = AVAILABLE_FIELD;
             }
         }
     }
