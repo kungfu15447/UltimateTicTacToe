@@ -5,9 +5,13 @@
  */
 package GUI.Controller;
 
+import BLL.bot.IBot;
+import BLL.game.GameManager;
+import BLL.game.GameState;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,9 +29,12 @@ import javafx.stage.Stage;
  */
 public class OpenScreenController implements Initializable
 {
-
+    GameManager gameManager;
+    GameState currentState;
+    IBot bot;
+    IBot bot2;
     @FXML
-    private ComboBox<?> comboBox;
+    private ComboBox<String> comboBox;
     @FXML
     private AnchorPane rootPane;
 
@@ -37,12 +44,26 @@ public class OpenScreenController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
+        comboBox.setItems(FXCollections.observableArrayList("Human VS Human","Human VS Bot","Bot VS Bot"));
+        comboBox.setVisibleRowCount(3);
     }    
 
     @FXML
-    private void handleComboBox(ActionEvent event) 
+    private String handleComboBox() 
     {
+        String option = null;
+        int selectIndex = comboBox.getSelectionModel().getSelectedIndex();
+        
+        switch(selectIndex)
+        {
+            case 1: option = "humanVsHuman";
+            break;
+            case 2: option = "humanVsBot";
+            break;
+            case 3: option = "botVsBot";
+            break;
+        }
+        return option;
     }
 
     @FXML
@@ -54,4 +75,9 @@ public class OpenScreenController implements Initializable
         stage.setScene(scene);
     }
     
+    public String getOpponent()
+    {
+        String option = handleComboBox();
+        return option;
+    }
 }
