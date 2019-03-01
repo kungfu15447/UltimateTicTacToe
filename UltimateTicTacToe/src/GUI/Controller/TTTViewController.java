@@ -74,6 +74,8 @@ public class TTTViewController implements Initializable
     private GameManager gameManager;
     @FXML
     private SplitPane splitPane;
+    
+    OpenScreenController oscontroller;
 
     
     
@@ -157,5 +159,39 @@ public class TTTViewController implements Initializable
         Parent root = FXMLLoader.load(getClass().getResource("/GUI/View/OpenScreen.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
+    }
+    
+    public void setOpponent()
+    {
+        if(oscontroller.getOpponent() == "botVsBot")
+        {
+            botVsBot();
+            System.out.println("botVsBot");
+        }
+        else if(oscontroller.getOpponent()=="humanVsBot")
+        {
+            humanVsBot();
+            System.out.println("humanVsBot");
+        }
+        else
+        {
+            humanVsHuman();
+            System.out.println("botVsBot");
+        }
+    }
+    
+    public void humanVsHuman()
+    {
+        gameManager = new GameManager(new GameState());
+    }
+
+    public void humanVsBot()
+    {
+        gameManager = new GameManager(currentState, bot);
+    }
+
+    public void botVsBot()
+    {
+        gameManager = new GameManager(currentState, bot, bot2);
     }
 }

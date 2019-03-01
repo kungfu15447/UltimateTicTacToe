@@ -49,34 +49,21 @@ public class OpenScreenController implements Initializable
     }    
 
     @FXML
-    private void handleComboBox(ActionEvent event) 
+    private String handleComboBox() 
     {
+        String option = null;
         int selectIndex = comboBox.getSelectionModel().getSelectedIndex();
         
         switch(selectIndex)
         {
-            case 1: humanVsHuman();
+            case 1: option = "humanVsHuman";
             break;
-            case 2: humanVsBot();
+            case 2: option = "humanVsBot";
             break;
-            case 3: botVsBot();
+            case 3: option = "botVsBot";
             break;
         }
-    }
-        
-        public void humanVsHuman()
-    {
-        gameManager = new GameManager(new GameState());
-    }
-
-    public void humanVsBot()
-    {
-        gameManager = new GameManager(currentState, bot);
-    }
-
-    public void botVsBot()
-    {
-        gameManager = new GameManager(currentState, bot, bot2);
+        return option;
     }
 
     @FXML
@@ -88,4 +75,9 @@ public class OpenScreenController implements Initializable
         stage.setScene(scene);
     }
     
+    public String getOpponent()
+    {
+        String option = handleComboBox();
+        return option;
+    }
 }
