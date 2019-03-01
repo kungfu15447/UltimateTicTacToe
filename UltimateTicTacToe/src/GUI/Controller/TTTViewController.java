@@ -11,6 +11,7 @@ import BLL.game.GameState;
 import BLL.game.IGameState;
 import BLL.game.GameManager;
 import BLL.move.Move;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,16 +19,21 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Label;
+import javafx.scene.control.SplitPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 /**
  *
@@ -65,6 +71,8 @@ public class TTTViewController implements Initializable
     private Label lblPlayersTurn;
     
     private GameManager gameManager;
+    @FXML
+    private SplitPane splitPane;
 
     
     
@@ -125,7 +133,6 @@ public class TTTViewController implements Initializable
 
     }
 
-    @FXML
     private void handleChangeOpponent()
     {
 
@@ -188,5 +195,14 @@ public class TTTViewController implements Initializable
         int r = (row == null) ? 0 : row;
         int c = (col == null) ? 0 : col;
         
+    }
+
+    @FXML
+    private void handleMainMenuBtn(ActionEvent event) throws IOException
+    {
+        Stage stage = (Stage) splitPane.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/View/OpenScreen.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
     }
 }

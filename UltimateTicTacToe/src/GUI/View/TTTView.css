@@ -108,3 +108,17 @@ and open the template in the editor.
     -fx-text-fill: #86888A;
 }
 
+.combo-box
+{
+    -fx-background-color: bg-grid-color;
+}
+
+.combo-box > .list-cell {
+-fx-background: bg-gap-color;
+-fx-background-color: bg-gap-color;
+}
+
+.label{
+    -fx-text-fill: #86888A;
+}
+

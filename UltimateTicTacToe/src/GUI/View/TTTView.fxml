@@ -9,13 +9,13 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@TTTView.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.TTTViewController">
+<SplitPane fx:id="splitPane" dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@TTTView.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.TTTViewController">
   <items>
     <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="150.0" stylesheets="@TTTView.css">
          <children>
-            <Button layoutX="49.0" layoutY="337.0" mnemonicParsing="false" onAction="#handleRestartBtn" text="Restart" />
+            <Button layoutX="48.0" layoutY="297.0" mnemonicParsing="false" onAction="#handleRestartBtn" text="Restart" />
             <Label fx:id="lblPlayersTurn" layoutX="25.0" layoutY="14.0" prefHeight="17.0" prefWidth="101.0" />
-            <Button layoutX="19.0" layoutY="187.0" mnemonicParsing="false" onAction="#handleChangeOpponent" text="Change opponent" />
+            <Button layoutX="36.0" layoutY="336.0" mnemonicParsing="false" onAction="#handleMainMenuBtn" text="Main menu" />
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="340.0">
          <children>
