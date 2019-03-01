@@ -26,7 +26,7 @@ public class Field implements IField
         
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
-                board[i][j] = AVAILABLE_FIELD;
+                board[i][j] = EMPTY_FIELD;
             }
         }
 
@@ -44,7 +44,7 @@ public class Field implements IField
     {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
-                board[i][j] = AVAILABLE_FIELD;
+                board[i][j] = EMPTY_FIELD;
             }
         }
 
@@ -61,13 +61,13 @@ public class Field implements IField
     public List<IMove> getAvailableMoves()
     {
         List<IMove> availableMoves = new ArrayList<>();
-        for (int i = 0; i < macroBoard.length; i++)
+        for (int i = 0; i < board.length; i++)
         {
-            for (int j = 0; j < macroBoard[0].length; i++)
+            for (int j = 0; j < board[i].length; j++)
             {
-                if (isInActiveMicroboard(i, j))
+                if (board[i][j].equals(EMPTY_FIELD) && isInActiveMicroboard(i, j))
                 {
-                    checkMicroboardForAvailableMoves(i, j, availableMoves);
+                    availableMoves.add(new Move(i,j));
                 }
             }
         }
@@ -114,7 +114,9 @@ public class Field implements IField
     @Override
     public Boolean isInActiveMicroboard(int x, int y)
     {
-        if (macroBoard[x][y].equals(AVAILABLE_FIELD))
+        int macroX = x/3;
+        int macroY = y/3;
+        if (macroBoard[macroX][macroY].equals(AVAILABLE_FIELD))
         {
             return true;
         } else
@@ -145,31 +147,6 @@ public class Field implements IField
     public void setMacroboard(String[][] macroboard)
     {
         this.macroBoard = macroboard;
-    }
-
-    /**
-     * Checks a microboard for available fields. If a field is available it adds
-     * it to a lst of available moves
-     * @param row the row value of the macroboard where the microboard is at
-     * @param column the column value of the macroboard where the microboard is
-     * at
-     * @param availableMoves the list of avaiable moves
-     */
-    private void checkMicroboardForAvailableMoves(int row, int column, List<IMove> availableMoves)
-    {
-        for (int x = 0; x < 2; x++)
-        {
-            for (int y = 0; y < 2; y++)
-            {
-                int microboardX = x + row * 3;
-                int microboardY = y + column * 3;
-                if (board[microboardX][microboardY].equals(AVAILABLE_FIELD))
-                {
-                    IMove move = new Move(microboardX, microboardY);
-                    availableMoves.add(move);
-                }
-            }
-        }
     }
 
 }

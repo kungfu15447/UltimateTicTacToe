@@ -70,14 +70,10 @@ public class TTTViewController implements Initializable
     private GridPane board3;
     @FXML
     private Label lblPlayersTurn;
-    
+
     private GameManager gameManager;
     @FXML
     private SplitPane splitPane;
-
-    
-    
-    
 
     @FXML
     private void handleButtonAction(ActionEvent event)
@@ -86,26 +82,22 @@ public class TTTViewController implements Initializable
         Integer col = GridPane.getColumnIndex((Node) event.getSource());
         int r = (row == null) ? 0 : row;
         int c = (col == null) ? 0 : col;
+        int boardXCoordinates = r + macroRowIndex * 3;
+        int boardYCoordinates = c + macroColumnIndex * 3;
         String setO = "O";
         String setX = "X";
         Button btn = (Button) event.getSource();
-        
-        
-        if(gameManager.getCurrentPlayer() == 0)
+
+        if (gameManager.getCurrentPlayer() == 0)
         {
             btn.setText(setX);
-            
-        }
-        else if(gameManager.getCurrentPlayer() == 1)
+
+        } else if (gameManager.getCurrentPlayer() == 1)
         {
             btn.setText(setO);
-            
+
         }
-        gameManager.updateGame(new Move(r,c));
-            
-        
-        
-        
+        gameManager.updateGame(new Move(boardXCoordinates, boardYCoordinates));
 
     }
 
@@ -114,7 +106,6 @@ public class TTTViewController implements Initializable
     {
         lblPlayersTurn.setText("1");
     }
-
 
     @FXML
     private void handleRestartBtn(ActionEvent event)
@@ -183,7 +174,7 @@ public class TTTViewController implements Initializable
     {
         gameManager = new GameManager(currentState, bot, bot2);
     }
-    
+
     public void initializeGameManager(GameManager gameManager)
     {
         this.gameManager = gameManager;
