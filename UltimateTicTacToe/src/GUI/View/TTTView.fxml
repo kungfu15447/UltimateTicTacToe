@@ -34,7 +34,7 @@
                      </rowConstraints>
                      <children>
 
-                        <GridPane fx:id="board1" hgap="4.0" onMouseEntered="#getMacroBoardCoordinates" vgap="4.0">
+                        <GridPane fx:id="board1" hgap="4.0" onMouseEntered="#getMacroBoardCoordinates" styleClass="grid-1" stylesheets="@TTTView.css" vgap="4.0">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -57,7 +57,7 @@
                               <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
-                        <GridPane fx:id="board2" hgap="4.0" onMouseEntered="#getMacroBoardCoordinates" vgap="4.0" GridPane.columnIndex="1">
+                        <GridPane fx:id="board2" hgap="4.0" onMouseEntered="#getMacroBoardCoordinates" styleClass="grid-2" stylesheets="@TTTView.css" vgap="4.0" GridPane.columnIndex="1">
 
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -82,7 +82,7 @@
                            </children>
                         </GridPane>
 
-                        <GridPane fx:id="board4" hgap="4.0" onMouseEntered="#getMacroBoardCoordinates" vgap="4.0" GridPane.rowIndex="1">
+                        <GridPane fx:id="board4" hgap="4.0" onMouseEntered="#getMacroBoardCoordinates" styleClass="grid-4" vgap="4.0" GridPane.rowIndex="1">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -106,7 +106,7 @@
                            </children>
                         </GridPane>
 
-                        <GridPane fx:id="board5" hgap="4.0" onMouseEntered="#getMacroBoardCoordinates" vgap="4.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <GridPane fx:id="board5" hgap="4.0" onMouseEntered="#getMacroBoardCoordinates" styleClass="grid-5" vgap="4.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -130,7 +130,7 @@
                            </children>
                         </GridPane>
 
-                        <GridPane fx:id="board7" hgap="4.0" onMouseEntered="#getMacroBoardCoordinates" vgap="4.0" GridPane.rowIndex="2">
+                        <GridPane fx:id="board7" hgap="4.0" onMouseEntered="#getMacroBoardCoordinates" styleClass="grid-7" stylesheets="@TTTView.css" vgap="4.0" GridPane.rowIndex="2">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -154,7 +154,7 @@
                            </children>
                         </GridPane>
 
-                        <GridPane fx:id="board8" hgap="4.0" onMouseEntered="#getMacroBoardCoordinates" vgap="4.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <GridPane fx:id="board8" hgap="4.0" onMouseEntered="#getMacroBoardCoordinates" styleClass="grid-8" vgap="4.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -178,7 +178,7 @@
                            </children>
                         </GridPane>
 
-                        <GridPane fx:id="board9" hgap="4.0" onMouseEntered="#getMacroBoardCoordinates" vgap="4.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <GridPane fx:id="board9" hgap="4.0" onMouseEntered="#getMacroBoardCoordinates" styleClass="grid-9" vgap="4.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
 
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -203,7 +203,7 @@
                            </children>
                         </GridPane>
 
-                        <GridPane fx:id="board6" hgap="4.0" onMouseEntered="#getMacroBoardCoordinates" vgap="4.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <GridPane fx:id="board6" hgap="4.0" onMouseEntered="#getMacroBoardCoordinates" styleClass="grid-6" vgap="4.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -227,7 +227,7 @@
                            </children>
                         </GridPane>
 
-                        <GridPane fx:id="board3" hgap="4.0" onMouseEntered="#getMacroBoardCoordinates" vgap="4.0" GridPane.columnIndex="2">
+                        <GridPane fx:id="board3" hgap="4.0" onMouseEntered="#getMacroBoardCoordinates" styleClass="grid-3" vgap="4.0" GridPane.columnIndex="2">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="9.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
