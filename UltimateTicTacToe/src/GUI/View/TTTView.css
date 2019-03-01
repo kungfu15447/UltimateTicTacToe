@@ -1,0 +1,110 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 06-12-2018, 22:41:28
+    Author     : KristianUrup
+*/
+
+.root
+{
+    bg-gap-color: black;
+    bg-grid-border: #33383f;
+}
+
+.split-pane
+{
+    -fx-background-color: bg-grid-border;
+    
+}
+
+.border-pane
+{
+    -fx-background-color: bg-grid-border;
+}
+
+.grid
+{
+    -fx-background-color: bg-grid-border;
+    -fx-border-color: bg-grid-border;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+}
+
+.grid-1
+{
+    -fx-background-color: bg-grid-border;
+    -fx-border-color: bg-grid-border;
+    -fx-border-width: 0 5 5 0;
+}
+
+.grid-2
+{
+    -fx-background-color: bg-grid-border;
+    -fx-border-color: bg-grid-border;
+    -fx-border-width: 0 5 5 5;
+}
+
+.grid-3
+{
+    -fx-background-color: bg-grid-border;
+    -fx-border-color: bg-grid-border;
+    -fx-border-width: 0 0 5 5;
+}
+
+.grid-4
+{
+    -fx-background-color: bg-grid-border;
+    -fx-border-color: bg-grid-border;
+    -fx-border-width: 5 5 5 0;
+}
+
+.grid-5
+{
+    -fx-background-color: bg-grid-border;
+    -fx-border-color: bg-grid-border;
+    -fx-border-width: 5 5 5 5;
+}
+
+.grid-6
+{
+    -fx-background-color: bg-grid-border;
+    -fx-border-color: bg-grid-border;
+    -fx-border-width: 5 0 5 5;
+}
+
+.grid-7
+{
+    -fx-background-color: bg-grid-border;
+    -fx-border-color: bg-grid-border;
+    -fx-border-width: 5 5 0 0;
+}
+
+.grid-8
+{
+    -fx-background-color: bg-grid-border;
+    -fx-border-color: bg-grid-border;
+    -fx-border-width: 5 5 0 5;
+}
+
+.grid-9
+{
+    -fx-background-color: bg-grid-border;
+    -fx-border-color: bg-grid-border;
+    -fx-border-width: 5 0 0 5;
+}
+
+.button
+{
+    -fx-border-color: black;
+    -fx-background-color: black;
+    -fx-background-radius: -1;
+    -fx-border-radius:-1;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-text-fill: #86888A;
+}
+
