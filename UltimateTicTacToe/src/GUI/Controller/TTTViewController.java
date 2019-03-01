@@ -7,10 +7,10 @@ package GUI.Controller;
 
 import BLL.bot.IBot;
 import BLL.field.IField;
-import BLL.game.GameManager;
 import BLL.game.GameState;
 import BLL.game.IGameState;
 import BLL.game.GameManager;
+import BLL.move.Move;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +19,14 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
 /**
@@ -34,7 +36,7 @@ import javafx.scene.layout.GridPane;
 public class TTTViewController implements Initializable
 {
 
-    GameManager gm;
+    
     GameState currentState;
     IBot bot;
     IBot bot2;
@@ -61,8 +63,9 @@ public class TTTViewController implements Initializable
     private GridPane board3;
     @FXML
     private Label lblPlayersTurn;
-
+    
     private GameManager gameManager;
+
     
     
     
@@ -70,6 +73,29 @@ public class TTTViewController implements Initializable
     @FXML
     private void handleButtonAction(ActionEvent event)
     {
+        Integer row = GridPane.getRowIndex((Node) event.getSource());
+        Integer col = GridPane.getColumnIndex((Node) event.getSource());
+        int r = (row == null) ? 0 : row;
+        int c = (col == null) ? 0 : col;
+        String setO = "O";
+        String setX = "X";
+        Button btn = (Button) event.getSource();
+        
+        if(gameManager.getCurrentPlayer() == 0)
+        {
+            btn.setText(setX);
+            
+        }
+        else if(gameManager.getCurrentPlayer() == 1)
+        {
+            btn.setText(setO);
+            
+        }
+        gameManager.updateGame(new Move(r,c));
+            
+        
+        
+        
 
     }
 
@@ -77,7 +103,7 @@ public class TTTViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         lblPlayersTurn.setText("1");
-    }    
+    }
 
 
     @FXML
@@ -87,13 +113,12 @@ public class TTTViewController implements Initializable
         alert.setTitle("Restart the game?");
         alert.setHeaderText("You are about to clear the board");
         alert.setContentText("Are you sure?");
-        
+
         Optional<ButtonType> result = alert.showAndWait();
-        if(result.get()== ButtonType.YES)
+        if (result.get() == ButtonType.YES)
         {
             field.clearBoard();
-        }
-        else
+        } else
         {
             //close the dialog!
         }
@@ -113,8 +138,7 @@ public class TTTViewController implements Initializable
         dialog.setTitle("Choice Dialog");
         dialog.setHeaderText("Which opponent do you want?");
         dialog.setContentText("Choose:");
-        
-        
+
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent())
         {
@@ -138,16 +162,31 @@ public class TTTViewController implements Initializable
 
     public void humanVsHuman()
     {
-        gm = new GameManager(currentState);
+        gameManager = new GameManager(new GameState());
     }
 
     public void humanVsBot()
     {
-        gm = new GameManager(currentState, bot);
+        gameManager = new GameManager(currentState, bot);
     }
 
     public void botVsBot()
     {
-        gm = new GameManager(currentState, bot, bot2);
+        gameManager = new GameManager(currentState, bot, bot2);
+    }
+    
+    public void initializeGameManager(GameManager gameManager)
+    {
+        this.gameManager = gameManager;
+    }
+
+    @FXML
+    private void getMacroBoardCoordinates(MouseEvent event)
+    {
+        Integer row = GridPane.getRowIndex((Node) event.getSource());
+        Integer col = GridPane.getColumnIndex((Node) event.getSource());
+        int r = (row == null) ? 0 : row;
+        int c = (col == null) ? 0 : col;
+        
     }
 }
