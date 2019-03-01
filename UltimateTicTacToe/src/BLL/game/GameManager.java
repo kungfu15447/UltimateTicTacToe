@@ -1,6 +1,7 @@
 package BLL.game;
 import BLL.bot.IBot;
 import BLL.move.IMove;
+import BLL.move.Move;
 
 /**
  * This is a proposed GameManager for Ultimate Tic-Tac-Toe,
@@ -28,7 +29,8 @@ public class GameManager {
     private GameMode mode = GameMode.HumanVsHuman;
     private IBot bot = null;
     private IBot bot2 = null;
-
+    private int macroBoardX;
+    private int macroBoardY;
     /**
      * Set's the currentState so the game can begin.
      * Game expected to be played Human vs Human
@@ -122,6 +124,7 @@ public class GameManager {
     
     private Boolean verifyMoveLegality(IMove move)
     {
+        
         //Test if the move is legal   
         //NOTE: should also check whether the move is placed on an occupied spot.
         System.out.println("Checking move validity against macroboard available field");
@@ -133,7 +136,7 @@ public class GameManager {
     {
        String[][] currentBoard;
        currentBoard = currentState.getField().getBoard();
-       currentBoard[move.getX()][move.getY()] = Integer.toString(currentPlayer);
+       currentBoard[move.getX()+macroBoardX*3][move.getY()+macroBoardY*3] = Integer.toString(currentPlayer);
        currentState.getField().setBoard(currentBoard);
        int currentRound = currentState.getMoveNumber();
        currentState.setMoveNumber(currentRound + 1);
@@ -143,12 +146,15 @@ public class GameManager {
     private void updateMacroboard(IMove move)
     {
        //TODO: Update the macroboard to the new state 
-       throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     public int getCurrentPlayer()
     {
         return currentPlayer;
     }
-
+    
+    public void setMacroBoardCoordinates(int x, int y) {
+        macroBoardX = x;
+        macroBoardY = y;
+    }
 }

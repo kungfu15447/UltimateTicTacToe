@@ -2,7 +2,6 @@ package BLL.field;
 
 import java.util.List;
 import BLL.move.IMove;
-import BLL.move.IMove;
 
 /**
  *

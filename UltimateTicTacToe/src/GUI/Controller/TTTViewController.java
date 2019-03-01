@@ -36,11 +36,12 @@ import javafx.scene.layout.GridPane;
 public class TTTViewController implements Initializable
 {
 
-    
-    GameState currentState;
-    IBot bot;
-    IBot bot2;
-    IField field;
+    private int macroRowIndex;
+    private int macroColumnIndex;
+    private GameState currentState;
+    private IBot bot;
+    private IBot bot2;
+    private IField field;
     @FXML
     private GridPane macroBoard;
     @FXML
@@ -80,6 +81,7 @@ public class TTTViewController implements Initializable
         String setO = "O";
         String setX = "X";
         Button btn = (Button) event.getSource();
+        
         
         if(gameManager.getCurrentPlayer() == 0)
         {
@@ -185,8 +187,7 @@ public class TTTViewController implements Initializable
     {
         Integer row = GridPane.getRowIndex((Node) event.getSource());
         Integer col = GridPane.getColumnIndex((Node) event.getSource());
-        int r = (row == null) ? 0 : row;
-        int c = (col == null) ? 0 : col;
-        
+        macroRowIndex = (row == null) ? 0 : row;
+        macroColumnIndex = (col == null) ? 0 : col;
     }
 }
