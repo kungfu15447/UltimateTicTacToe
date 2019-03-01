@@ -132,55 +132,7 @@ public class TTTViewController implements Initializable
         }
 
     }
-
-    private void handleChangeOpponent()
-    {
-
-        List<String> choices = new ArrayList<>();
-        choices.add("Human vs. Human");
-        choices.add("Human vs. Bot");
-        choices.add("Bot vs. Bot");
-
-        ChoiceDialog<String> dialog = new ChoiceDialog<>("Human vs. Human", choices);
-        dialog.setTitle("Choice Dialog");
-        dialog.setHeaderText("Which opponent do you want?");
-        dialog.setContentText("Choose:");
-
-        Optional<String> result = dialog.showAndWait();
-        if (result.isPresent())
-        {
-            switch (result.get())
-            {
-                case "Human vs. Human":
-                    humanVsHuman();
-                    System.out.println("Human vs. Human");
-                    break;
-                case "Human vs. Bot":
-                    humanVsBot();
-                    System.out.println("Human vs. Bot");
-                    break;
-                case "Bot vs. Bot":
-                    botVsBot();
-                    System.out.println("Bot vs. Bot");
-                    break;
-            }
-        }
-    }
-
-    public void humanVsHuman()
-    {
-        gameManager = new GameManager(new GameState());
-    }
-
-    public void humanVsBot()
-    {
-        gameManager = new GameManager(currentState, bot);
-    }
-
-    public void botVsBot()
-    {
-        gameManager = new GameManager(currentState, bot, bot2);
-    }
+    
     
     public void initializeGameManager(GameManager gameManager)
     {

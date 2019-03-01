@@ -12,12 +12,16 @@ and open the template in the editor.
 {
     bg-gap-color: black;
     bg-grid-border: #33383f;
+    text-fill: #86888A;
 }
 
 .split-pane
 {
     -fx-background-color: bg-grid-border;
-    
+}
+
+.split-pane:horizontal > .split-pane-divider {
+   -fx-background-color: bg-gap-color;
 }
 
 .border-pane
@@ -105,20 +109,27 @@ and open the template in the editor.
     -fx-border-width: 1;
     -fx-border-radius: 5;
     -fx-background-radius: 5;
-    -fx-text-fill: #86888A;
+    -fx-text-fill: text-fill;
 }
 
 .combo-box
 {
-    -fx-background-color: bg-grid-color;
+    -fx-background-color: bg-grid-border;
+}
+
+.combo-box-popup .list-view .list-cell
+{
+    -fx-background-color: bg-gap-color;
+    -fx-text-fill: text-fill;
 }
 
 .combo-box > .list-cell {
 -fx-background: bg-gap-color;
 -fx-background-color: bg-gap-color;
+-fx-text-fill: text-fill;
 }
 
 .label{
-    -fx-text-fill: #86888A;
+    -fx-text-fill: text-fill;
 }
 
