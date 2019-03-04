@@ -57,11 +57,11 @@ public class OpenScreenController implements Initializable
         
         switch(selectIndex)
         {
-            case 1: option = "humanVsHuman";
+            case 0: option = "humanVsHuman";
             break;
-            case 2: option = "humanVsBot";
+            case 1: option = "humanVsBot";
             break;
-            case 3: option = "botVsBot";
+            case 2: option = "botVsBot";
             break;
             default:
                 throw new UnsupportedOperationException("No option chosen");
@@ -77,7 +77,7 @@ public class OpenScreenController implements Initializable
         Parent root = (Parent) loader.load();
         
         TTTViewController tttvcontroller = loader.getController();
-        tttvcontroller.initializeOSController(oscontroller);
+        tttvcontroller.setchoice(handleComboBox());
         
         Scene scene = new Scene(root);
         stage.setScene(scene);

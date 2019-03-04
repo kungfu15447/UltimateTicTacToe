@@ -157,6 +157,7 @@ public class GameManager
     {
         int macroX = move.getX() / 3;
         int macroY = move.getY() / 3;
+        
     }
 
     public int getCurrentPlayer()
