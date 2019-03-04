@@ -29,6 +29,7 @@ import javafx.stage.Stage;
  */
 public class OpenScreenController implements Initializable
 {
+    OpenScreenController oscontroller;
     GameManager gameManager;
     GameState currentState;
     IBot bot;
@@ -49,9 +50,9 @@ public class OpenScreenController implements Initializable
     }    
 
     @FXML
-    private String handleComboBox() 
+    public String handleComboBox() 
     {
-        String option = null;
+        String option;
         int selectIndex = comboBox.getSelectionModel().getSelectedIndex();
         
         switch(selectIndex)
@@ -62,6 +63,8 @@ public class OpenScreenController implements Initializable
             break;
             case 3: option = "botVsBot";
             break;
+            default:
+                throw new UnsupportedOperationException("No option chosen");
         }
         return option;
     }
@@ -70,7 +73,12 @@ public class OpenScreenController implements Initializable
     private void handleContinueBtn(ActionEvent event) throws IOException
     {
         Stage stage = (Stage) rootPane.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/GUI/View/TTTView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/TTTView.fxml"));
+        Parent root = (Parent) loader.load();
+        
+        TTTViewController tttvcontroller = loader.getController();
+        tttvcontroller.initializeOSController(oscontroller);
+        
         Scene scene = new Scene(root);
         stage.setScene(scene);
     }

@@ -108,7 +108,12 @@ public class TTTViewController implements Initializable
     {
         lblPlayersTurn.setText("1");
     }
-
+    
+    public void initializeOSController(OpenScreenController oscontroller)
+    {
+        this.oscontroller = oscontroller;
+    }
+    
     @FXML
     private void handleRestartBtn(ActionEvent event)
     {
@@ -126,40 +131,6 @@ public class TTTViewController implements Initializable
             //close the dialog!
         }
 
-    }
-
-    private void handleChangeOpponent()
-    {
-
-        List<String> choices = new ArrayList<>();
-        choices.add("Human vs. Human");
-        choices.add("Human vs. Bot");
-        choices.add("Bot vs. Bot");
-
-        ChoiceDialog<String> dialog = new ChoiceDialog<>("Human vs. Human", choices);
-        dialog.setTitle("Choice Dialog");
-        dialog.setHeaderText("Which opponent do you want?");
-        dialog.setContentText("Choose:");
-
-        Optional<String> result = dialog.showAndWait();
-        if (result.isPresent())
-        {
-            switch (result.get())
-            {
-                case "Human vs. Human":
-                    humanVsHuman();
-                    System.out.println("Human vs. Human");
-                    break;
-                case "Human vs. Bot":
-                    humanVsBot();
-                    System.out.println("Human vs. Bot");
-                    break;
-                case "Bot vs. Bot":
-                    botVsBot();
-                    System.out.println("Bot vs. Bot");
-                    break;
-            }
-        }
     }
 
     public void humanVsHuman()
@@ -202,12 +173,12 @@ public class TTTViewController implements Initializable
     
     public void setOpponent()
     {
-        if(oscontroller.getOpponent() == "botVsBot")
+        if(oscontroller.getOpponent().equals("botVsBot"))
         {
             botVsBot();
             System.out.println("botVsBot");
         }
-        else if(oscontroller.getOpponent()=="humanVsBot")
+        else if(oscontroller.handleComboBox()=="humanVsBot")
         {
             humanVsBot();
             System.out.println("humanVsBot");
