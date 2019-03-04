@@ -135,14 +135,15 @@ public class GameManager
 
     private Boolean verifyMoveLegality(IMove move)
     {
-        if (currentState.getField().isInActiveMicroboard(move.getX(), move.getY()))
-        {
-            if (currentState.getField().getPlayerId(move.getX(), move.getY()).equals(IField.EMPTY_FIELD))
-            {
-                return true;
-            }
-        }
-        return false;
+        IField field = currentState.getField();
+        boolean isValid = field.isInActiveMicroboard(move.getX(), move.getY());
+        
+        if(isValid && (move.getX() < 0 || 9 <= move.getX())) isValid = false;
+        if(isValid && (move.getY() < 0 || 9 <= move.getY())) isValid = false;
+        
+        if(isValid && !field.getBoard()[move.getX()][move.getY()].equals(IField.EMPTY_FIELD)) isValid = false;
+        
+        return isValid;
     }
 
     private void updateBoard(IMove move)
