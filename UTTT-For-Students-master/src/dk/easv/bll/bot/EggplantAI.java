@@ -22,7 +22,7 @@ public class EggplantAI implements IBot
     private String enemy = "";
     int[][] preferredMoves = {
             {0, 0}, {2, 2}, {0, 2}, {2, 0}, //Corners
-            {1, 1}, //Corners ordered across
+            {1, 1}, //Middle
             {0, 1}, {2, 1}, {1, 0}, {1, 2}}; //Outer Middles ordered across
    
     
