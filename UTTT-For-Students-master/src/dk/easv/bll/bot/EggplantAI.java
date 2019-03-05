@@ -8,6 +8,8 @@ package dk.easv.bll.bot;
 import dk.easv.bll.field.IField;
 import dk.easv.bll.game.IGameState;
 import dk.easv.bll.move.IMove;
+import dk.easv.bll.move.Move;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -20,7 +22,7 @@ public class EggplantAI implements IBot {
     private final String BOT_NAME = "EggplantAI";
     private String player = "";
     private String enemy = "";
-    private Random rand = new Random();
+    private final Random RAND = new Random();
 
     @Override
     public IMove doMove(IGameState state) {
@@ -33,7 +35,7 @@ public class EggplantAI implements IBot {
             return checkForWins(state, enemy);
         }
         if (moves.size() > 0) {
-            return moves.get(rand.nextInt(moves.size()));
+            return moves.get(RAND.nextInt(moves.size()));
             /* get random move from available moves */
         }
         return state.getField().getAvailableMoves().get(0);
@@ -119,6 +121,78 @@ public class EggplantAI implements IBot {
     }
     
     private boolean checkIfEnemyWinsNextBoard(IGameState state, IMove move) {
+        List<IMove> availableMoves = new ArrayList<>();
+        int macroX = move.getX()/3;
+        int macroY = move.getY()/3;
+        int startX = 0+macroX*3;
+        int startY = 0+macroY*3;
+        
+        for (int i = startX; i < startX + 3; i++) {
+            for (int j = startY; j < startY + 3; j++) {
+                if (state.getField().getBoard()[i][j].equals(IField.EMPTY_FIELD)) {
+                    availableMoves.add(new Move(i,j));
+                }
+            }
+        }
+        if (availableMoves.isEmpty()) {
+            return false;
+        }
+        for (IMove move2 : availableMoves) {
+            String[][] board = state.getField().getBoard();
+            board[move2.getX()][move2.getY()] = enemy;
+            int localX = move.getX() % 3;
+            int localY = move.getY() % 3;
+            int startingX = move2.getX() - (localX);
+            int startingY = move2.getY() - (localY);
+            //check col
+            for (int i = startingY; i < startingY + 3; i++) {
+                if (!board[move2.getX()][i].equals(enemy)) {
+                    break;
+                }
+                if (i == startingY + 3 - 1) {
+                    return true;
+                }
+            }
+
+            //check row
+            for (int i = startingX; i < startingX + 3; i++) {
+                if (!board[i][move2.getY()].equals(enemy)) {
+                    break;
+                }
+                if (i == startingX + 3 - 1) {
+                    return true;
+                }
+            }
+
+            //check diagonal
+            if (localX == localY) {
+                //we're on a diagonal
+                int y = startingY;
+                for (int i = startingX; i < startingX + 3; i++) {
+                    if (!board[i][y++].equals(enemy)) {
+                        break;
+                    }
+                    if (i == startingX + 3 - 1) {
+                        return true;
+                    }
+                }
+            }
+
+            //check anti diagonal
+            if (localX + localY == 3 - 1) {
+                int less = 0;
+                for (int i = startingX; i < startingX + 3; i++) {
+                    if (!board[i][(startY + 2) - less++].equals(enemy)) {
+                        break;
+                    }
+                    if (i == startX + 3 - 1) {
+                        return true;
+                    }
+                }
+            }
+            board[move2.getX()][move2.getY()] = IField.EMPTY_FIELD;
+        }
+        
         return false;
     }
 
