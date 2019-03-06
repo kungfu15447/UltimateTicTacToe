@@ -20,8 +20,8 @@ private static final String BOTNAME = "Definetely not a bot";
     // Moves {row, col} in order of preferences. {0, 0} at top-left corner
     protected int[][] preferredMoves = {
             {1, 1}, //Center
-            {0, 0}, {2, 2}, {0, 2}, {2, 0},  //Corners ordered across
-            {0, 1}, {2, 1}, {1, 0}, {1, 2}}; //Outer Middles ordered across
+            {0, 0}, {2, 1}, {0, 2}, {2, 0},  //Corners ordered across
+            {0, 1}, {2, 2}, {1, 0}, {1, 2}}; //Outer Middles ordered across
 
     /**
      * Makes a turn. Edit this method to make your bot smarter.
