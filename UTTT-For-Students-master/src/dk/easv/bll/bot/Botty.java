@@ -28,13 +28,20 @@ public class Botty implements IBot
     
     // Moves {row, col} in order of preferences. {0, 0} at top-left corner
     
-    public int [][] checkMacroBoard(int xTrans, int yTrans)
+    public IMove checkMacroBoard(IGameState state)
     {
-        String [][] whereOnMacroBoard = field.getMacroboard();
-        if(whereOnMacroBoard == [0][0])
-        {
-            
+        for (int i = 0; i < state.getField().getMacroboard().length; i++) {
+            for (int j = 0; j < state.getField().getMacroboard()[0].length; i++) {
+                if (state.getField().getMacroboard()[i][j].equals(IField.AVAILABLE_FIELD)) {
+                    int boardX = i+i*3;
+                    int boardY = j+j*3;
+                    if (state.getField().getBoard()[boardX][boardY].equals(IField.EMPTY_FIELD)) {
+                        return new Move(boardX,boardY);
+                    }
+                }
+            }
         }
+        return state.getField().getAvailableMoves().get(0);
     }
 
     @Override
