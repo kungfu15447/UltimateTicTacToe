@@ -27,18 +27,19 @@ public class EggplantAI implements IBot {
     @Override
     public IMove doMove(IGameState state) {
         List<IMove> moves = state.getField().getAvailableMoves();
-
+        IMove moveToBeMade = null;
         checkWhoIAm(state);
-        if (checkForWins(state, player) != null) {
-            return checkForWins(state, player);
-        } else if (checkForWins(state, enemy) != null) {
-            return checkForWins(state, enemy);
+        if (moveToBeMade == null) {
+            moveToBeMade = checkForWins(state, player);
+        } 
+        if (moveToBeMade == null) {
+            moveToBeMade = checkForWins(state, enemy);
         }
-        if (moves.size() > 0) {
-            return moves.get(RAND.nextInt(moves.size()));
+        if (moveToBeMade == null && moves.size() > 0) {
+            moveToBeMade = moves.get(RAND.nextInt(moves.size()));
             /* get random move from available moves */
         }
-        return state.getField().getAvailableMoves().get(0);
+        return moveToBeMade;
     }
 
     @Override
@@ -104,7 +105,7 @@ public class EggplantAI implements IBot {
             board[move.getX()][move.getY()] = IField.EMPTY_FIELD;
         }
 
-        return state.getField().getAvailableMoves().get(0);
+        return null;
     }
 
     private void checkWhoIAm(IGameState state) {
