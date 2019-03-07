@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dk.easv.bll.bot;
+
 
 import dk.easv.bll.bot.IBot;
 import dk.easv.bll.field.Field;

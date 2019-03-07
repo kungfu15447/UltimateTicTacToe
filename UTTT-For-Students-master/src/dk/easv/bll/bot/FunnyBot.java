@@ -5,7 +5,6 @@
  */
 package dk.easv.bll.bot;
 
-import dk.easv.bll.bot.IBot;
 import dk.easv.bll.field.IField;
 import dk.easv.bll.game.IGameState;
 import dk.easv.bll.move.IMove;
@@ -16,11 +15,12 @@ import java.util.Random;
 
 /**
  *
- * @author Frederik Jensen
+ * @author Kristian Urup laptop
  */
-public class EggplantAI implements IBot {
+public class FunnyBot implements IBot
+{
 
-    private final String BOT_NAME = "EggplantAI";
+    private final String BOT_NAME = "FunnyBot";
     private String player = "";
     private String enemy = "";
     private final Random RAND = new Random();
@@ -36,11 +36,32 @@ public class EggplantAI implements IBot {
         if (moveToBeMade == null) {
             moveToBeMade = checkForWins(state, enemy);
         }
+        if(moveToBeMade == null)
+        {
+            moveToBeMade = checkMacroBoard(state);
+        }
         if (moveToBeMade == null && moves.size() > 0) {
             moveToBeMade = moves.get(RAND.nextInt(moves.size()));
+            //moveToBeMade = moves.get(RAND.nextInt(moves.size()));
             /* get random move from available moves */
         }
         return moveToBeMade;
+    }
+    
+    public IMove checkMacroBoard(IGameState state)
+    {
+        for (int i = 0; i < state.getField().getMacroboard().length; i++) {
+            for (int j = 0; j < state.getField().getMacroboard()[0].length; j++) {
+                if (state.getField().getMacroboard()[i][j].equals(IField.AVAILABLE_FIELD)) {
+                    int boardX = i+i*3;
+                    int boardY = j+j*3;
+                    if (state.getField().getBoard()[boardX][boardY].equals(IField.EMPTY_FIELD)) {
+                        return new Move(boardX,boardY);
+                    }
+                }
+            }
+        }
+        return null;
     }
 
     @Override
