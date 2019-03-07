@@ -20,7 +20,7 @@ import java.util.Objects;
  */
 public class Botty implements IBot
 {
-    int [][] preferredMoves;
+    //int [][] preferredMoves;
     IField Ifield;
     private String player;
     private static final String BOTNAME = "Botty";
@@ -46,7 +46,10 @@ public class Botty implements IBot
 
     @Override
     public IMove doMove(IGameState state) {
-        
+        int [][] preferredMoves = {
+            {0, 0}, {2, 2}, {0, 2}, {2, 0},  //Corners ordered across
+            {0, 1}, {2, 1}, {1, 0}, {1, 2}, //Outer Middles ordered across
+            {1, 1}}; //Center
         //Find macroboard to play in
         for (int[] move : preferredMoves)
         {
