@@ -8,13 +8,10 @@ package GUI.Controller;
 import BLL.bot.IBot;
 import BLL.field.IField;
 import BLL.game.GameState;
-import BLL.game.IGameState;
 import BLL.game.GameManager;
 import BLL.move.Move;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -28,7 +25,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.input.MouseEvent;
@@ -42,6 +38,7 @@ import javafx.stage.Stage;
 public class TTTViewController implements Initializable
 {
 
+    private String choice;
     private int macroRowIndex;
     private int macroColumnIndex;
     private GameState currentState;
@@ -74,8 +71,6 @@ public class TTTViewController implements Initializable
     private GameManager gameManager;
     @FXML
     private SplitPane splitPane;
-    
-    OpenScreenController oscontroller;
 
     @FXML
     private void handleButtonAction(ActionEvent event)
@@ -107,11 +102,6 @@ public class TTTViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         lblPlayersTurn.setText("1");
-    }
-    
-    public void initializeOSController(OpenScreenController oscontroller)
-    {
-        this.oscontroller = oscontroller;
     }
     
     @FXML
@@ -173,20 +163,19 @@ public class TTTViewController implements Initializable
     
     public void setOpponent()
     {
-        if(oscontroller.getOpponent().equals("botVsBot"))
-        {
-            botVsBot();
-            System.out.println("botVsBot");
-        }
-        else if(oscontroller.handleComboBox()=="humanVsBot")
-        {
-            humanVsBot();
-            System.out.println("humanVsBot");
-        }
-        else
-        {
-            humanVsHuman();
-            System.out.println("botVsBot");
+        switch (choice) {
+            case "humanVsHuman" : humanVsHuman();
+            break;
+            case "humanVsBot" : humanVsBot();
+            break;
+            case "botVsBot" : botVsBot();
+            break;
         }
     }
+    
+    public void setchoice(String choice) {
+        this.choice = choice;
+        setOpponent();
+    }
+    
 }
